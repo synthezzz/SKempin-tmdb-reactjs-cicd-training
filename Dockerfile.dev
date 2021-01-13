@@ -1,0 +1,13 @@
+FROM node:alpine
+WORKDIR /app
+#Installing dep's
+RUN npm install -g bower
+RUN npm install -g gulp
+#Copying files
+COPY package*.json ./
+COPY . .
+#Start Build
+RUN npm install
+RUN bower install --allow-root
+
+CMD [ "gulp", "watch" ]
